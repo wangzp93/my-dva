@@ -9,38 +9,44 @@ export default {
     },
     // 操作state用的，相当于vuex中mutations
     reducers: {
-        setCnName(state, payload) {
-            const _state = JSON.parse(JSON.stringify(state));
-            _state.cnName = payload.cnName;
-            return _state;
+        setCnName(state, {payload}) {
+            return {
+                ...state,
+                cnName: payload.cnName
+            };
         },
-        setCnodeData(state, payload) {
-            const _state = JSON.parse(JSON.stringify(state));
-            _state.cnodeData = payload.cnodeData;
-            return _state;
+        setCnodeData(state, {payload}) {
+            return {
+                ...state,
+                cnodeData: payload.cnodeData
+            };
         },
-        subPath(state, payload) {
-            console.log(payload.data);
+        subPath(state, {payload}) {
+            console.log('subs中的订阅数据：', payload.data);
             return state;
         }
     },
-    // 异步
+    // 异步操作，操作I/O，数据库，请求接口
     effects: {
         // 使用es6的Generator语法
-        *setCnNameAsync({payload}, {put, call}) {
-            // put实际是发一个action，调用reducers中方法
+        * setCnNameAsync({payload}, {put, call}) {
+            // put类似dispatch，发一个action，调用reducers中方法
             yield put({
                 type: 'setCnName',  // 这里就不需要命名空间了
-                cnName: '异步改变的名字'
+                payload: {
+                    cnName: '异步改变的名字'
+                }
             });
         },
         // 这里调接口
-        *testCnode({payload}, {put, call}) {
-            let res = yield call(apis.testCnode);
+        * testCnode({payload}, {put, call}) {
+            let res = yield call(apis.testCnode, payload);
             if (res.data) {
                 yield put({
                     type: 'setCnodeData',
-                    cnodeData: res.data.data
+                    payload: {
+                        cnodeData: res.data.data
+                    }
                 })
             }
         }
@@ -53,7 +59,9 @@ export default {
                 if (pathname === "/wzp") {
                     dispatch({
                         type: 'subPath',
-                        data: "订阅中的数据"
+                        payload: {
+                            data: "订阅中的数据"
+                        }
                     });
                 }
             });

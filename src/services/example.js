@@ -4,6 +4,6 @@ const proxyPrefix = '/apis';
 export function query() {
   return request('/api/users');
 }
-export function testCnode() {
+export function testCnode(params) {
   return request(proxyPrefix + '/api/v1/topics');
 }

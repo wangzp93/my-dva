@@ -23,14 +23,16 @@ class IndexWzp extends React.Component {
     changeName = ()=> {
         this.props.dispatch({
             type: 'wzpModels/setCnName',    // type必传，{命名空间/方法名}，这样来传
-            cnName: 'Cat'
+            payload: {
+                cnName: 'Cat'
+            }
         });
     }
     // 异步改变models中数据
     changeNameAsync = ()=> {
         this.props.dispatch({
             type: 'wzpModels/setCnNameAsync',
-            data: {
+            payload: {
                 cnName: '000'
             }
         });
@@ -39,7 +41,9 @@ class IndexWzp extends React.Component {
     asyncCnode = ()=> {
         this.props.dispatch({
             type: 'wzpModels/testCnode',
-            aaa: 'aaa'
+            payload: {
+                aaa: 'aaa'
+            }
         });
     }
     render() {
