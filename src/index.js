@@ -1,14 +1,14 @@
 import dva from 'dva';
 import './index.css';
 
-import { createBrowserHistory as createHistory } from 'history';
+import { createBrowserHistory } from 'history';
 
 // 1. Initialize
-// const app = dva();
-// 地址中#丑的问题
-const app = dva({
-    history: createHistory()
-});
+const app = dva();
+// 解决地址中#丑的问题，但是browserHistory会导致路由传参有差异，很蛋疼，还是不用了
+// const app = dva({
+//     history: createBrowserHistory()
+// });
 
 // 2. Plugins
 // app.use({});

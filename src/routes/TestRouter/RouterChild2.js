@@ -3,12 +3,13 @@ import React, { Fragment } from 'react';
 export default class RouterChild2 extends React.Component {
     constructor(props) {
         super(props);
+        console.log(props)
         this.state = {
             userId: ''
         }
     }
     componentDidMount() {
-        // state方式，地址栏不显示，刷新还在
+        // state方式，地址栏不显示，刷新消失，browserHistory时不消失
         let params = this.props.location.state || {};
         this.setState({
             userId: params.userId

@@ -8,7 +8,7 @@ export default class RouterChild4 extends React.Component {
         }
     }
     componentDidMount() {
-        // 路由中写死，页面刷新会报错
+        // 路由中写死，browserHistory时页面刷新会报错
         let params = this.props.match.params || {};
         this.setState({
             userId: params.userId

@@ -13,24 +13,25 @@ class RouterParent extends React.Component {
     }
     // state
     test2 = ()=> {
-        // 经测试，四者效果相同
-        this.props.history.push('/routerChild2', {
-            userId: '2020'
+        // 经测试，效果相同
+        this.props.history.push({
+            pathname: "/routerChild2",
+            state: {
+                userId: '2020'
+            }
         });
-        // this.props.history.push({
-        //     pathname: "/routerChild2",
-        //     state: {
-        //         userId: '2020'
-        //     }
-        // });
-        // this.props.dispatch(routerRedux.push('/routerChild2', {
-        //     userId: '2020'
-        // }));
         // this.props.dispatch(routerRedux.push({
         //     pathname: '/routerChild2',
         //     state: {
         //         userId: '2020'
         //     }
+        // }));
+        // 以下两种，仅browserHistory时可用
+        // this.props.history.push('/routerChild2', {
+        //     userId: '2020'
+        // });
+        // this.props.dispatch(routerRedux.push('/routerChild2', {
+        //     userId: '2020'
         // }));
     }
     // query
@@ -51,7 +52,7 @@ class RouterParent extends React.Component {
     }
     // 路由中写死
     test4 = ()=> {
-        // 经测试，四者效果相同
+        // 效果相同
         this.props.history.push('/routerChild4/2020');
         // this.props.dispatch(routerRedux.push('/routerChild4/2020'));
         // this.props.history.push({
