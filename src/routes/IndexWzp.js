@@ -1,11 +1,12 @@
-import React from 'react';
-import WzpChild from '../components/WzpChild';
+import React, { Fragment } from 'react';
 import { connect } from 'dva';
+import { Link, routerRedux } from 'dva/router';
 import * as apis from '../services/example';    // * 代表把内容全部引过来
 
 class IndexWzp extends React.Component {
     constructor(props) {
         super(props);
+        console.log(props)
         // models中配置的数据
         // console.log(this.props.cnName);
     }
@@ -14,10 +15,6 @@ class IndexWzp extends React.Component {
         // apis.testCnode().then((res)=> {
         //     console.log(res)
         // });
-    }
-    // 跳转到首页
-    toHome = ()=> {
-        this.props.history.push('/');
     }
     // 改变models中数据
     changeName = ()=> {
@@ -48,18 +45,17 @@ class IndexWzp extends React.Component {
     }
     render() {
         console.log(this.props.cnodeData)   // 取调models中接口后返回的值
+
+        const style = {marginTop: 10};
         return (
-            <div>
-                <div style={{border: '1px solid black'}}>
-                    <WzpChild/>
-                </div>
+            <Fragment>
                 <span>wzp页面</span><br/>
                 models中名字：<span>{this.props.cnName}</span><br/>
-                <button onClick={this.changeName}>改变名字</button><br/>
-                <button onClick={this.changeNameAsync}>异步改变名字</button><br/>
-                <button onClick={this.asyncCnode}>调用异步Cnode接口</button><br/>
-                <button onClick={this.toHome}>跳转到首页(函数方式)</button><br/>
-            </div>
+                <button style={style} onClick={this.changeName}>改变名字</button><br/>
+                <button style={style} onClick={this.changeNameAsync}>异步改变名字</button><br/>
+                <button style={style} onClick={this.asyncCnode}>调用异步Cnode接口</button><br/>
+                <Link to="/">返回首页</Link><br/>
+            </Fragment>
         )
     }
 }
