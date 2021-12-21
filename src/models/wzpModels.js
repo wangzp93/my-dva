@@ -30,7 +30,7 @@ export default {
     effects: {
         // 使用es6的Generator语法
         * setCnNameAsync({payload}, {put, call}) {
-            // put类似dispatch，发一个action，调用reducers中方法
+            // put触发redecers中方法，类似commit触发mutations
             yield put({
                 type: 'setCnName',  // 这里就不需要命名空间了
                 payload: {
